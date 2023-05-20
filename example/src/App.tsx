@@ -1,27 +1,49 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-theme-prototyper';
+import { StyleSheet, View } from 'react-native';
+import { AppBar } from './components/app-bar/AppBar';
+import { Text } from './components/text/Text';
+import { AppTheme } from './components/app-theme/AppTheme';
+import { AppBarTheme, useAppBarTheme } from './components/app-bar/AppBarTheme';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  return (
+    <AppTheme>
+      <AfterTheme />
+    </AppTheme>
+  );
+}
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+const AfterTheme = () => {
+  const barTheme = useAppBarTheme();
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <AppBar>
+        <Text>Using default root theme</Text>
+      </AppBar>
+      <AppBarTheme
+        value={{
+          titleStyle: barTheme.titleStyle.copyWith({ color: 'blue' }),
+          border: barTheme.border.copyWith({ thickness: 1 }),
+        }}
+      >
+        <AppBar>
+          <Text>Using app bar theme</Text>
+        </AppBar>
+      </AppBarTheme>
+      <AppBar>
+        <Text style={barTheme.titleStyle.copyWith({ color: 'green' }).value}>
+          Inline customization
+        </Text>
+      </AppBar>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   box: {
     width: 60,

@@ -1,22 +1,19 @@
 # react-native-theme-prototyper
 
-React native lib with primitive to create themable components
+React native lib with primitives to create themable components
+
+### WIP/PoC
+
+This is still an experiment, its not ready.
 
 ## Installation
 
-```sh
-npm install react-native-theme-prototyper
-```
+TBD
 
 ## Usage
 
-```js
-import { multiply } from 'react-native-theme-prototyper';
 
-// ...
-
-const result = await multiply(3, 7);
-```
+Look at the example app
 
 ## Contributing
 
