@@ -1,15 +1,15 @@
 import React, { createContext, ReactNode, useContext, useMemo } from 'react';
 
 export const createThemable = <T,>(initial: T) => {
-  const ThemableContext = createContext(initial);
+  const Context = createContext(initial);
 
-  const useTheme = () => useContext(ThemableContext);
+  const useComponentTheme = () => useContext(Context);
 
-  const ThemableProvider = (props: {
-    children?: ReactNode | undefined;
-    value: T;
-  }) => {
-    const parent = useTheme();
+  // Themable provider merges the upper parent context into this
+  // TODO: we might want to consider a flag for this behavior? merge might not be
+  //  desirable every time
+  const Provider = (props: { children?: ReactNode | undefined; value: T }) => {
+    const parent = useComponentTheme();
 
     const effectiveValue = useMemo(
       () => ({
@@ -20,11 +20,11 @@ export const createThemable = <T,>(initial: T) => {
     );
 
     return (
-      <ThemableContext.Provider value={effectiveValue}>
+      <Context.Provider value={effectiveValue}>
         {props.children}
-      </ThemableContext.Provider>
+      </Context.Provider>
     );
   };
 
-  return { ThemableProvider, useTheme };
+  return { Provider, useComponentTheme };
 };

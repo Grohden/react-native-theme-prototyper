@@ -1,33 +1,32 @@
-import { createAppTheme, themeValue } from 'react-native-theme-prototyper';
+import { copyWith, createAppTheme } from 'react-native-theme-prototyper';
 import type { ReactNode } from 'react';
 import React, { useMemo } from 'react';
 import type { ImageStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
-import type { TextStyle } from '../text/TextTheme';
-import { AppBarTheme, useAppBarTheme } from '../app-bar/AppBarTheme';
+import type { AppBarThemeData } from '../app-bar';
+import { AppBarTheme, useAppBarTheme } from '../app-bar';
+import type { TextThemeData } from '../text';
 
 export type AppTheme = {
   primaryColor: string;
-  appBar: AppBarTheme;
+  appBar: AppBarThemeData;
 };
 
 const RootTheme = createAppTheme<{
   primaryColor: string;
 }>(null!);
 
-const baseText = themeValue<TextStyle>({
-  fontSize: 12,
-});
+const baseText = { fontSize: 12 };
 
 const AppThemes: { light: AppTheme } = {
   light: {
     primaryColor: 'red',
     appBar: {
-      border: themeValue({
+      border: {
         color: 'black',
         thickness: 2,
-      }),
-      titleStyle: baseText.copyWith({
+      },
+      titleStyle: copyWith(baseText, {
         fontSize: 24,
       }),
     },
@@ -50,7 +49,7 @@ export const useAppTheme = () => ({
 });
 
 type ThemeFactory = (theme: AppTheme) => {
-  [K: string]: ViewStyle | TextStyle | ImageStyle;
+  [K: string]: ViewStyle | TextThemeData | ImageStyle;
 };
 
 export function createAppStyle<T extends ThemeFactory>(themeFactory: T) {
