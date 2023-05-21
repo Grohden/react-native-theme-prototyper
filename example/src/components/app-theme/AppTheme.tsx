@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 import React, { useMemo } from 'react';
 import type { ImageStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
-import type { AppBarThemeData } from '../app-bar';
-import { AppBarTheme, useAppBarTheme } from '../app-bar';
-import type { TextThemeData } from '../text';
+import type { AppBarThemeData } from '../app-bar/AppBarThemeData';
+import { AppBarTheme, useAppBarTheme } from '../app-bar/AppBarThemeData';
+import type { TextThemeData } from '../text/TextThemeData';
 
 export type AppTheme = {
   primaryColor: string;

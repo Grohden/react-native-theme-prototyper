@@ -1,16 +1,7 @@
 import { createAppStyle } from '../app-theme';
 import { View } from 'react-native';
 import React, { ReactNode } from 'react';
-import { TextThemeData, TextTheme } from '../text';
-import { createThemable } from 'react-native-theme-prototyper';
-
-export type AppBarThemeData = {
-  border: { color: string; thickness: number };
-  titleStyle: TextThemeData;
-};
-
-export const { Provider: AppBarTheme, useComponentTheme: useAppBarTheme } =
-  createThemable<AppBarThemeData>(null!);
+import { TextTheme } from '../text/TextThemeData';
 
 export const AppBar = (props: { children?: ReactNode | undefined }) => {
   const styles = useStyles();
