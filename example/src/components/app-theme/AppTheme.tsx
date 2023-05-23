@@ -6,6 +6,10 @@ import { StyleSheet } from 'react-native';
 import type { AppBarThemeData } from '../app-bar/AppBarThemeData';
 import { AppBarTheme, useAppBarTheme } from '../app-bar/AppBarThemeData';
 import type { TextThemeData } from '../text/TextThemeData';
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
 export type AppTheme = {
   primaryColor: string;
@@ -37,18 +41,21 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
   const current = AppThemes.light;
 
   return (
-    <RootTheme.Provider value={current}>
-      <AppBarTheme value={current.appBar}>{props.children}</AppBarTheme>
-    </RootTheme.Provider>
+    <SafeAreaProvider>
+      <RootTheme.Provider value={current}>
+        <AppBarTheme value={current.appBar}>{props.children}</AppBarTheme>
+      </RootTheme.Provider>
+    </SafeAreaProvider>
   );
 };
 
 export const useAppTheme = () => ({
   ...RootTheme.useHook(),
   appBar: useAppBarTheme(),
+  insets: useSafeAreaInsets(),
 });
 
-type ThemeFactory = (theme: AppTheme) => {
+type ThemeFactory = (theme: ReturnType<typeof useAppTheme>) => {
   [K: string]: ViewStyle | TextThemeData | ImageStyle;
 };
 

@@ -13,12 +13,11 @@ export const AppBar = (props: { children?: ReactNode | undefined }) => {
   );
 };
 
-const useStyles = createAppStyle(({ primaryColor, appBar }) => ({
+const useStyles = createAppStyle(({ primaryColor, appBar, insets }) => ({
   container: {
     flexDirection: 'column',
-    // FIXME: need to inject safe area into theme
-    marginTop: 62,
     padding: 10,
+    marginTop: insets.top,
     borderBottomWidth: appBar.border?.thickness ?? 1,
     borderBottomColor: appBar.border?.color || primaryColor,
   },
