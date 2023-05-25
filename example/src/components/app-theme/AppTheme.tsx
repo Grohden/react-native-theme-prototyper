@@ -1,7 +1,7 @@
-import { copyWith, createAppTheme } from 'react-native-theme-prototyper';
+import { createAppTheme } from 'react-native-theme-prototyper';
 import type { ReactNode } from 'react';
 import React, { useMemo } from 'react';
-import type { ImageStyle, ViewStyle } from 'react-native';
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 import type { AppBarThemeData } from '../app-bar/AppBarThemeData';
 import { AppBarTheme, useAppBarTheme } from '../app-bar/AppBarThemeData';
@@ -10,29 +10,63 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import {
+  TextButtonTheme,
+  TextButtonThemeData,
+  useTextButtonTheme,
+} from '../text-button/TextButtonThemeData';
+import {
+  OutlineButtonTheme,
+  OutlineButtonThemeData,
+  useOutlineButtonTheme,
+} from '../outline-button/OutlineButtonThemeData';
+import chroma from 'chroma-js';
 
 export type AppTheme = {
   primaryColor: string;
-  appBar: AppBarThemeData;
+  roundness: number;
+  appBarTheme: AppBarThemeData;
+  textButtonTheme: TextButtonThemeData;
+  outlineButtonTheme: OutlineButtonThemeData;
 };
 
 const RootTheme = createAppTheme<{
   primaryColor: string;
+  roundness: number;
 }>(null!);
 
-const baseText = { fontSize: 12 };
+const roundness = 38;
+const primaryColor = chroma('#862ed2');
+const thickness = 1;
+const baseText: TextStyle = { fontSize: 12 };
 
 const AppThemes: { light: AppTheme } = {
   light: {
-    primaryColor: 'red',
-    appBar: {
+    primaryColor: primaryColor.hex(),
+    roundness,
+    appBarTheme: {
       border: {
         color: 'black',
-        thickness: 2,
+        thickness,
       },
-      titleStyle: copyWith(baseText, {
+      titleStyle: {
+        ...baseText,
         fontSize: 24,
-      }),
+      },
+    },
+    textButtonTheme: {
+      text: {
+        ...baseText,
+        fontSize: 16,
+        fontWeight: '500',
+      },
+    },
+    outlineButtonTheme: {
+      text: {
+        ...baseText,
+        fontSize: 16,
+        fontWeight: '500',
+      },
     },
   },
 };
@@ -43,7 +77,13 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
   return (
     <SafeAreaProvider>
       <RootTheme.Provider value={current}>
-        <AppBarTheme value={current.appBar}>{props.children}</AppBarTheme>
+        <AppBarTheme value={current.appBarTheme}>
+          <OutlineButtonTheme value={current.outlineButtonTheme}>
+            <TextButtonTheme value={current.textButtonTheme}>
+              {props.children}
+            </TextButtonTheme>
+          </OutlineButtonTheme>
+        </AppBarTheme>
       </RootTheme.Provider>
     </SafeAreaProvider>
   );
@@ -51,7 +91,9 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
 
 export const useAppTheme = () => ({
   ...RootTheme.useHook(),
-  appBar: useAppBarTheme(),
+  appBarTheme: useAppBarTheme(),
+  textButtonTheme: useTextButtonTheme(),
+  outlineButtonTheme: useOutlineButtonTheme(),
   insets: useSafeAreaInsets(),
 });
 

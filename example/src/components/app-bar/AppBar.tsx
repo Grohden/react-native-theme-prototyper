@@ -13,13 +13,13 @@ export const AppBar = (props: { children?: ReactNode | undefined }) => {
   );
 };
 
-const useStyles = createAppStyle(({ primaryColor, appBar, insets }) => ({
+const useStyles = createAppStyle(({ primaryColor, appBarTheme, insets }) => ({
   container: {
     flexDirection: 'column',
     padding: 10,
     marginTop: insets.top,
-    borderBottomWidth: appBar.border?.thickness ?? 1,
-    borderBottomColor: appBar.border?.color || primaryColor,
+    borderBottomWidth: appBarTheme.border?.thickness ?? 1,
+    borderBottomColor: appBarTheme.border?.color || primaryColor,
   },
-  title: appBar.titleStyle,
+  title: appBarTheme.titleStyle,
 }));
