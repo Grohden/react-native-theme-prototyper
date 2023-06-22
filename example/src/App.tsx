@@ -1,8 +1,7 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
-import { AppTheme, ScreenContainer } from './components';
+import { AppTheme } from './components';
 import { AppBarScreen } from './screens/AppBarScreen';
-import { useState } from 'react';
 import { ButtonsScreen } from './screens/ButtonsScreen';
 
 export default function App() {
@@ -14,9 +13,9 @@ export default function App() {
 }
 
 const AfterTheme = () => {
-  const [current] = useState<'AppBar' | 'Buttons'>('AppBar');
+  const [current] = useState<'AppBar' | 'Buttons'>('Buttons');
 
-  const screen = (() => {
+  return (() => {
     switch (current) {
       case 'AppBar':
         return <AppBarScreen />;
@@ -24,6 +23,4 @@ const AfterTheme = () => {
         return <ButtonsScreen />;
     }
   })();
-
-  return <ScreenContainer>{screen}</ScreenContainer>;
 };

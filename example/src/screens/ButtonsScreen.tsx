@@ -1,12 +1,16 @@
-import { OutlineButtonTheme, Spacer, Text } from '../components';
 import * as React from 'react';
 import {
+  AppBar,
   Center,
+  OutlineButton,
+  OutlineButtonTheme,
+  Spacer,
+  Text,
   TextButton,
   TextButtonTheme,
   useTextButtonTheme,
-  OutlineButton,
 } from '../components';
+import { IconButton } from '../components/icon-button/IconButton';
 
 const noop = () => {};
 export const ButtonsScreen = () => {
@@ -14,6 +18,10 @@ export const ButtonsScreen = () => {
 
   return (
     <>
+      <AppBar>
+        <IconButton name="chevron-left" onPress={noop} />
+        <Text>Buttons</Text>
+      </AppBar>
       <Center>
         <TextButton onPress={noop}>
           <Text>Text button (default)</Text>
@@ -30,7 +38,7 @@ export const ButtonsScreen = () => {
         <OutlineButton onPress={noop}>
           <Text>Outline button (Default)</Text>
         </OutlineButton>
-        <Spacer.Tiny />
+        <Spacer.Medium />
         <OutlineButtonTheme value={{ ...theme, color: '#D22E7B' }}>
           <OutlineButton onPress={noop}>
             <Text>Outline button (custom)</Text>

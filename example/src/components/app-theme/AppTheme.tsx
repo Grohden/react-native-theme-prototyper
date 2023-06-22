@@ -21,6 +21,11 @@ import {
   useOutlineButtonTheme,
 } from '../outline-button/OutlineButtonThemeData';
 import chroma from 'chroma-js';
+import {
+  IconButtonTheme,
+  IconButtonThemeData,
+  useIconButtonTheme,
+} from '../icon-button/IconButtonThemeData';
 
 export type AppTheme = {
   primaryColor: string;
@@ -28,6 +33,7 @@ export type AppTheme = {
   appBarTheme: AppBarThemeData;
   textButtonTheme: TextButtonThemeData;
   outlineButtonTheme: OutlineButtonThemeData;
+  iconButtonTheme: IconButtonThemeData;
 };
 
 const RootTheme = createAppTheme<{
@@ -68,6 +74,9 @@ const AppThemes: { light: AppTheme } = {
         fontWeight: '500',
       },
     },
+    iconButtonTheme: {
+      backgroundColor: 'red',
+    },
   },
 };
 
@@ -80,7 +89,9 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
         <AppBarTheme value={current.appBarTheme}>
           <OutlineButtonTheme value={current.outlineButtonTheme}>
             <TextButtonTheme value={current.textButtonTheme}>
-              {props.children}
+              <IconButtonTheme value={current.iconButtonTheme}>
+                {props.children}
+              </IconButtonTheme>
             </TextButtonTheme>
           </OutlineButtonTheme>
         </AppBarTheme>
@@ -94,6 +105,7 @@ export const useAppTheme = () => ({
   appBarTheme: useAppBarTheme(),
   textButtonTheme: useTextButtonTheme(),
   outlineButtonTheme: useOutlineButtonTheme(),
+  iconButtonTheme: useIconButtonTheme(),
   insets: useSafeAreaInsets(),
 });
 

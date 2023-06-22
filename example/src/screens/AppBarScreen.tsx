@@ -30,5 +30,8 @@ export const AppBarScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignSelf: 'stretch' },
+  container: {
+    flex: 1,
+    alignSelf: 'stretch',
+  },
 });
