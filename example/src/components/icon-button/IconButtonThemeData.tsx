@@ -1,12 +1,12 @@
 import { createThemable } from 'react-native-theme-prototyper';
-import type { PaddingMeasures } from '../../helpers/padding';
+import type { EdgeInsets, BorderRadius } from '../../helpers';
 
 export type IconButtonThemeData = {
   size?: number;
   color?: string;
   backgroundColor?: string;
-  borderRadius?: number;
-  padding?: PaddingMeasures;
+  borderRadius?: BorderRadius;
+  padding?: EdgeInsets;
 };
 
 export const {

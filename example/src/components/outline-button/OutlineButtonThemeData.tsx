@@ -1,10 +1,10 @@
 import { createThemable } from 'react-native-theme-prototyper';
 import type { TextThemeData } from '../text/TextThemeData';
-import type { ViewStyle } from 'react-native';
+import type { BorderRadius } from '../../helpers';
 
 export type OutlineButtonThemeData = {
   text?: TextThemeData;
-  touchable?: ViewStyle;
+  borderRadius?: BorderRadius;
   underlayColor?: string;
   color?: string;
 };

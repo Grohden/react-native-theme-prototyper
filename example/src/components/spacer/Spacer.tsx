@@ -12,6 +12,8 @@ const createSpacer = (size: number) => {
 };
 
 export const Spacer = {
+  // FIXME: should I consider this a SizedBox instead?
+  Specific: ({ size }: { size: number }) => <View style={{ height: size }} />,
   Tiny: createSpacer(10),
   Medium: createSpacer(16),
   Big: createSpacer(24),

@@ -1,11 +1,9 @@
 import { createAppTheme } from 'react-native-theme-prototyper';
 import type { ReactNode } from 'react';
-import React, { useMemo } from 'react';
-import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import type { TextStyle } from 'react-native';
 import type { AppBarThemeData } from '../app-bar/AppBarThemeData';
 import { AppBarTheme, useAppBarTheme } from '../app-bar/AppBarThemeData';
-import type { TextThemeData } from '../text/TextThemeData';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -44,7 +42,8 @@ const RootTheme = createAppTheme<{
 const roundness = 38;
 const primaryColor = chroma('#862ed2');
 const thickness = 1;
-const baseText: TextStyle = { fontSize: 12 };
+const baseFontSize = 12;
+const baseText: TextStyle = { fontSize: baseFontSize };
 
 const AppThemes: { light: AppTheme } = {
   light: {
@@ -57,25 +56,25 @@ const AppThemes: { light: AppTheme } = {
       },
       titleStyle: {
         ...baseText,
-        fontSize: 24,
+        fontSize: baseFontSize * 2,
       },
     },
     textButtonTheme: {
       text: {
         ...baseText,
-        fontSize: 16,
+        fontSize: baseFontSize * 1.4,
         fontWeight: '500',
       },
     },
     outlineButtonTheme: {
       text: {
         ...baseText,
-        fontSize: 16,
+        fontSize: baseFontSize * 1.4,
         fontWeight: '500',
       },
     },
     iconButtonTheme: {
-      backgroundColor: 'red',
+      size: baseFontSize * 1.4,
     },
   },
 };
@@ -108,18 +107,3 @@ export const useAppTheme = () => ({
   iconButtonTheme: useIconButtonTheme(),
   insets: useSafeAreaInsets(),
 });
-
-type ThemeFactory = (theme: ReturnType<typeof useAppTheme>) => {
-  [K: string]: ViewStyle | TextThemeData | ImageStyle;
-};
-
-export function createAppStyle<T extends ThemeFactory>(themeFactory: T) {
-  return (): ReturnType<T> => {
-    const theme = useAppTheme();
-
-    return useMemo(
-      () => StyleSheet.create(themeFactory(theme) as ReturnType<T>),
-      [theme]
-    );
-  };
-}

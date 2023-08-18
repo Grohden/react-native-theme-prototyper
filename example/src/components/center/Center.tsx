@@ -7,6 +7,6 @@ export const Center = ({ children }: { children: React.ReactNode }) => (
 
 const styles = StyleSheet.create({
   view: {
-    alignSelf: 'center',
+    alignItems: 'center',
   },
 });
