@@ -2,33 +2,36 @@ import { createAppTheme } from 'react-native-theme-prototyper';
 import type { ReactNode } from 'react';
 import React from 'react';
 import type { TextStyle } from 'react-native';
-import type { AppBarThemeData } from '../app-bar/AppBarThemeData';
-import { AppBarTheme, useAppBarTheme } from '../app-bar/AppBarThemeData';
+import chroma from 'chroma-js';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import {
+  TopAppBarTheme,
+  TopAppBarThemeData,
+  useTopAppBarTheme,
+} from '../top-app-bar';
+import {
   TextButtonTheme,
   TextButtonThemeData,
   useTextButtonTheme,
-} from '../text-button/TextButtonThemeData';
+} from '../text-button';
 import {
   OutlineButtonTheme,
   OutlineButtonThemeData,
   useOutlineButtonTheme,
-} from '../outline-button/OutlineButtonThemeData';
-import chroma from 'chroma-js';
+} from '../outline-button';
 import {
   IconButtonTheme,
   IconButtonThemeData,
   useIconButtonTheme,
-} from '../icon-button/IconButtonThemeData';
+} from '../icon-button';
 
 export type AppTheme = {
   primaryColor: string;
   roundness: number;
-  appBarTheme: AppBarThemeData;
+  topAppBarTheme: TopAppBarThemeData;
   textButtonTheme: TextButtonThemeData;
   outlineButtonTheme: OutlineButtonThemeData;
   iconButtonTheme: IconButtonThemeData;
@@ -49,7 +52,11 @@ const AppThemes: { light: AppTheme } = {
   light: {
     primaryColor: primaryColor.hex(),
     roundness,
-    appBarTheme: {
+    topAppBarTheme: {
+      icons: {
+        color: 'black',
+        size: 24,
+      },
       border: {
         color: 'black',
         thickness,
@@ -62,15 +69,17 @@ const AppThemes: { light: AppTheme } = {
     textButtonTheme: {
       text: {
         ...baseText,
-        fontSize: baseFontSize * 1.4,
+        fontSize: baseFontSize * 1.6,
         fontWeight: '500',
+        textTransform: 'uppercase',
       },
     },
     outlineButtonTheme: {
       text: {
         ...baseText,
-        fontSize: baseFontSize * 1.4,
+        fontSize: baseFontSize * 1.6,
         fontWeight: '500',
+        textTransform: 'uppercase',
       },
     },
     iconButtonTheme: {
@@ -85,7 +94,7 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
   return (
     <SafeAreaProvider>
       <RootTheme.Provider value={current}>
-        <AppBarTheme value={current.appBarTheme}>
+        <TopAppBarTheme value={current.topAppBarTheme}>
           <OutlineButtonTheme value={current.outlineButtonTheme}>
             <TextButtonTheme value={current.textButtonTheme}>
               <IconButtonTheme value={current.iconButtonTheme}>
@@ -93,7 +102,7 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
               </IconButtonTheme>
             </TextButtonTheme>
           </OutlineButtonTheme>
-        </AppBarTheme>
+        </TopAppBarTheme>
       </RootTheme.Provider>
     </SafeAreaProvider>
   );
@@ -101,7 +110,7 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
 
 export const useAppTheme = () => ({
   ...RootTheme.useHook(),
-  appBarTheme: useAppBarTheme(),
+  topAppBarTheme: useTopAppBarTheme(),
   textButtonTheme: useTextButtonTheme(),
   outlineButtonTheme: useOutlineButtonTheme(),
   iconButtonTheme: useIconButtonTheme(),

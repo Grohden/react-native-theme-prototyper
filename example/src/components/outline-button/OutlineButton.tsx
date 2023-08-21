@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TouchableHighlight } from 'react-native';
 import { TextTheme } from '../text/TextThemeData';
 import { useAppTheme } from '../app-theme';
 import chroma from 'chroma-js';
 import { Border, BorderRadius, EdgeInsets } from '../../helpers';
-import { Padding } from '../padding/Padding';
-import { DecoratedBox } from '../decorated-box/DecoratedBox';
+import { Padding } from '../padding';
+import { DecoratedBox } from '../decorated-box';
 
 export const OutlineButton = ({
   children,
   onPress,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   onPress?: () => void;
 }) => {
   const { outlineButtonTheme, primaryColor, roundness } = useAppTheme();

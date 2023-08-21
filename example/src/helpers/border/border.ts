@@ -17,6 +17,12 @@ type BorderStyles = {
 };
 
 export class Border {
+  constructor(private values: BorderDefinition) {}
+
+  static debug(color = 'red') {
+    return Border.all({ color, width: 1 });
+  }
+
   static only(values: BorderDefinition) {
     return new Border(values);
   }
@@ -31,8 +37,6 @@ export class Border {
       bottom: side,
     });
   }
-
-  constructor(private values: BorderDefinition) {}
 
   toStyle() {
     return this.toWidthStyles(this.toColorStyles({}));

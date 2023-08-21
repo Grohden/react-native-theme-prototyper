@@ -1,28 +1,32 @@
 import * as React from 'react';
 import {
-  AppBar,
-  Center,
+  BackButton,
+  Column,
   OutlineButton,
   OutlineButtonTheme,
+  Scaffold,
   Spacer,
   Text,
   TextButton,
   TextButtonTheme,
+  TopAppBar,
   useTextButtonTheme,
 } from '../components';
-import { IconButton } from '../components/icon-button/IconButton';
 
 const noop = () => {};
-export const ButtonsScreen = () => {
+
+export const ButtonsScreen = (props: { onPop: () => void }) => {
   const theme = useTextButtonTheme();
 
   return (
-    <>
-      <AppBar>
-        <IconButton name="chevron-left" onPress={noop} />
-        <Text>Buttons</Text>
-      </AppBar>
-      <Center>
+    <Scaffold
+      topAppBar={
+        <TopAppBar leadingAction={<BackButton onPress={props.onPop} />}>
+          <Text>Buttons</Text>
+        </TopAppBar>
+      }
+    >
+      <Column crossAxisAlignment="center">
         <TextButton onPress={noop}>
           <Text>Text button (default)</Text>
         </TextButton>
@@ -32,9 +36,7 @@ export const ButtonsScreen = () => {
             <Text>Text button (custom)</Text>
           </TextButton>
         </TextButtonTheme>
-      </Center>
-      <Spacer.Tiny />
-      <Center>
+        <Spacer.Tiny />
         <OutlineButton onPress={noop}>
           <Text>Outline button (Default)</Text>
         </OutlineButton>
@@ -44,7 +46,7 @@ export const ButtonsScreen = () => {
             <Text>Outline button (custom)</Text>
           </OutlineButton>
         </OutlineButtonTheme>
-      </Center>
-    </>
+      </Column>
+    </Scaffold>
   );
 };

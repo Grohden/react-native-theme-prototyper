@@ -1,12 +1,10 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React from 'react';
+import { Pressable, StyleSheet } from 'react-native';
 import { useAppTheme } from '../app-theme';
-import { Pressable } from 'react-native';
-import { Padding } from '../padding/Padding';
-import { EdgeInsets } from '../../helpers';
-import { DecoratedBox } from '../decorated-box/DecoratedBox';
+import { Center } from '../center';
 
-type IconName = 'chevron-left';
+type IconName = React.ComponentProps<typeof MaterialIcons>['name'];
 
 export const IconButton = ({
   name,
@@ -16,22 +14,23 @@ export const IconButton = ({
   onPress?: () => void;
 }) => {
   const { iconButtonTheme } = useAppTheme();
-  const padding = iconButtonTheme.padding || EdgeInsets.all(6);
 
   return (
-    <Pressable onPress={onPress}>
-      <DecoratedBox
-        backgroundColor={iconButtonTheme.backgroundColor}
-        borderRadius={iconButtonTheme.borderRadius}
-      >
-        <Padding padding={padding}>
-          <FontAwesome
-            name={name}
-            size={iconButtonTheme.size}
-            color={iconButtonTheme.color}
-          />
-        </Padding>
-      </DecoratedBox>
+    <Pressable onPress={onPress} style={styles.container}>
+      <Center>
+        <MaterialIcons
+          name={name}
+          size={iconButtonTheme.size}
+          color={iconButtonTheme.color}
+        />
+      </Center>
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    width: '100%',
+  },
+});

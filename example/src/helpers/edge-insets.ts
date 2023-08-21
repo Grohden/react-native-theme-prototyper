@@ -8,6 +8,10 @@ export type EdgeInsetsOnly = {
 };
 
 export class EdgeInsets {
+  private constructor(
+    public values: (EdgeInsetsSymmetric & EdgeInsetsOnly) | number
+  ) {}
+
   static only(value: EdgeInsetsOnly) {
     return new EdgeInsets(value);
   }
@@ -19,10 +23,6 @@ export class EdgeInsets {
   static all(value: number) {
     return new EdgeInsets(value);
   }
-
-  private constructor(
-    public values: (EdgeInsetsSymmetric & EdgeInsetsOnly) | number
-  ) {}
 
   toPrefixed<K extends string>(prefix: K) {
     type Keys =

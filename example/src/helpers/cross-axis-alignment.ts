@@ -1,5 +1,1 @@
-export enum CrossAxisAlignment {
-  start,
-  center,
-  end,
-}
+export type CrossAxisAlignment = 'start' | 'center' | 'end';
