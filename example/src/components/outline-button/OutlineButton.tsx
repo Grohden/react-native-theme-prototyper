@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { TouchableHighlight } from 'react-native';
-import { TextTheme } from '../text/TextThemeData';
+import { TextTheme } from '../text';
 import { useAppTheme } from '../app-theme';
 import chroma from 'chroma-js';
 import { Border, BorderRadius, EdgeInsets } from '../../helpers';

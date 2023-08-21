@@ -7,26 +7,14 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import {
-  TopAppBarTheme,
-  TopAppBarThemeData,
-  useTopAppBarTheme,
-} from '../top-app-bar';
-import {
-  TextButtonTheme,
-  TextButtonThemeData,
-  useTextButtonTheme,
-} from '../text-button';
-import {
-  OutlineButtonTheme,
-  OutlineButtonThemeData,
-  useOutlineButtonTheme,
-} from '../outline-button';
-import {
-  IconButtonTheme,
-  IconButtonThemeData,
-  useIconButtonTheme,
-} from '../icon-button';
+import type { TopAppBarThemeData } from '../top-app-bar';
+import { TopAppBarTheme, useTopAppBarTheme } from '../top-app-bar';
+import type { TextButtonThemeData } from '../text-button';
+import { TextButtonTheme, useTextButtonTheme } from '../text-button';
+import type { OutlineButtonThemeData } from '../outline-button';
+import { OutlineButtonTheme, useOutlineButtonTheme } from '../outline-button';
+import type { IconButtonThemeData } from '../icon-button';
+import { IconButtonTheme, useIconButtonTheme } from '../icon-button';
 
 export type AppTheme = {
   primaryColor: string;

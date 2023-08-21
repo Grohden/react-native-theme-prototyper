@@ -1,5 +1,5 @@
 import { createThemable } from 'react-native-theme-prototyper';
-import type { TextThemeData } from '../text/TextThemeData';
+import type { TextThemeData } from '../text';
 import type { BorderRadius } from '../../helpers';
 
 export type OutlineButtonThemeData = {
