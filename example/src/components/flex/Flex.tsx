@@ -22,7 +22,7 @@ export const Flex = ({
 
   switch (mainAxisSize) {
     case 'max':
-      style.width = '100%';
+      style[direction === 'row' ? 'width' : 'height'] = '100%';
       break;
   }
 

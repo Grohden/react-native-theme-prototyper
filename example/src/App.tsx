@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { AppTheme } from './components';
 import { ButtonsScreen } from './screens/ButtonsScreen';
 import { MainScreen } from './screens/MainScreen';
+import { CardsScreen } from './screens/CardsScreen';
+import { TypographyScreen } from './screens/TypographyScreen';
 
 export default function App() {
   return (
@@ -13,9 +15,9 @@ export default function App() {
 }
 
 const AfterTheme = () => {
-  const [current, setCurrent] = useState<('AppBar' | 'Buttons' | 'Main')[]>([
-    'Main',
-  ]);
+  const [current, setCurrent] = useState<
+    ('Cards' | 'Buttons' | 'Typography' | 'Main')[]
+  >(['Main']);
 
   const onPop = () => {
     setCurrent((routes) => {
@@ -27,7 +29,7 @@ const AfterTheme = () => {
     });
   };
 
-  const onOpen = (route: 'Buttons') => {
+  const onOpen = (route: 'Buttons' | 'Cards' | 'Typography') => {
     setCurrent((old) => [...old, route]);
   };
 
@@ -35,6 +37,10 @@ const AfterTheme = () => {
     switch (current[current.length - 1]) {
       case 'Buttons':
         return <ButtonsScreen onPop={onPop} />;
+      case 'Cards':
+        return <CardsScreen onPop={onPop} />;
+      case 'Typography':
+        return <TypographyScreen onPop={onPop} />;
       default:
         return <MainScreen onOpen={onOpen} />;
     }

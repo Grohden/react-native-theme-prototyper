@@ -1,9 +1,13 @@
 import { useAppTheme } from '../app-theme';
 import React, { ReactNode } from 'react';
-import { TextTheme } from '../text/TextThemeData';
-import { IconButtonTheme } from '../icon-button';
+import { TextTheme } from '../text';
+import { IconButtonTheme } from '../buttons';
 import { SizedBox } from '../sized-box';
 import { Row } from '../row';
+import { DecoratedBox } from '../decorated-box';
+import { Column } from '../column';
+import { Padding } from '../padding';
+import { EdgeInsets } from '../../helpers';
 
 // https://m3.material.io/components/top-app-bar/specs
 // we're for now just implementing the small top appbar
@@ -12,20 +16,25 @@ export const TopAppBar = (props: {
   leadingAction?: ReactNode;
   children?: ReactNode;
 }) => {
-  const { topAppBarTheme } = useAppTheme();
+  const { insets, topAppBar } = useAppTheme();
+  const { container, leadingIcon, headline } = topAppBar;
 
   return (
-    <SizedBox height={64}>
-      <Row mainAxisSize="max" crossAxisAlignment="center">
-        <SizedBox height={48} width={48}>
-          <IconButtonTheme value={topAppBarTheme.icons}>
-            {props.leadingAction}
-          </IconButtonTheme>
+    <DecoratedBox backgroundColor={container.color}>
+      <Padding padding={EdgeInsets.only({ top: insets.top })}>
+        <SizedBox height={64}>
+          <Column mainAxisSize="max" mainAxisAlignment="center">
+            <Row mainAxisSize="max" crossAxisAlignment="center">
+              <SizedBox height={48} width={48}>
+                <IconButtonTheme value={leadingIcon}>
+                  {props.leadingAction}
+                </IconButtonTheme>
+              </SizedBox>
+              <TextTheme value={headline}>{props.children}</TextTheme>
+            </Row>
+          </Column>
         </SizedBox>
-        <TextTheme value={topAppBarTheme.titleStyle}>
-          {props.children}
-        </TextTheme>
-      </Row>
-    </SizedBox>
+      </Padding>
+    </DecoratedBox>
   );
 };

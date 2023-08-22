@@ -1,10 +1,11 @@
 import { createThemable } from 'react-native-theme-prototyper';
-import type { TextThemeData } from '../text/TextThemeData';
+import type { TextThemeData } from '../../text';
 
 export type TextButtonThemeData = {
-  text?: TextThemeData;
-  underlayColor?: string;
-  color?: string;
+  shapeRadius: number;
+  color: string;
+  container: { elevation: number };
+  labelText: Omit<TextThemeData, 'color'>;
 };
 
 export const {

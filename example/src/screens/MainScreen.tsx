@@ -1,10 +1,10 @@
-import { Center, Scaffold, Text, TextButton, TopAppBar } from '../components';
 import * as React from 'react';
+import { Column, Scaffold, Text, TextButton, TopAppBar } from '../components';
 
 export const MainScreen = ({
   onOpen,
 }: {
-  onOpen: (route: 'Buttons') => void;
+  onOpen: (route: 'Buttons' | 'Cards' | 'Typography') => void;
 }) => (
   <Scaffold
     topAppBar={
@@ -13,10 +13,16 @@ export const MainScreen = ({
       </TopAppBar>
     }
   >
-    <Center>
+    <Column crossAxisAlignment="center">
+      <TextButton onPress={() => onOpen('Typography')}>
+        <Text>Typography</Text>
+      </TextButton>
       <TextButton onPress={() => onOpen('Buttons')}>
         <Text>Buttons</Text>
       </TextButton>
-    </Center>
+      <TextButton onPress={() => onOpen('Cards')}>
+        <Text>Cards</Text>
+      </TextButton>
+    </Column>
   </Scaffold>
 );

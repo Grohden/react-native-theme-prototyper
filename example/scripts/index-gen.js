@@ -7,7 +7,7 @@ const fileExtsReg = /\.tsx?/;
 
 const isIgnored = (name) => name !== 'index.ts' && !name.startsWith('_');
 
-const scanAndGenerate = (targetFolder, level = 0) => {
+const scanAndGenerate = (targetFolder, depth = 0) => {
   const rawNames = [];
   const files = fs.readdirSync(targetFolder, {
     withFileTypes: true,
@@ -18,9 +18,9 @@ const scanAndGenerate = (targetFolder, level = 0) => {
       rawNames.push(dirent.name);
     }
 
-    if (dirent.isDirectory() && level === 0) {
+    if (dirent.isDirectory() && depth <= 1) {
       rawNames.push(dirent.name);
-      scanAndGenerate(path.join(targetFolder, dirent.name), level + 1);
+      scanAndGenerate(path.join(targetFolder, dirent.name), depth + 1);
     }
   });
 
@@ -37,6 +37,6 @@ const scanAndGenerate = (targetFolder, level = 0) => {
   }
 };
 
-['components', 'helpers'].forEach((target) => {
+['components', 'helpers', 'design-tokens'].forEach((target) => {
   scanAndGenerate(path.join(base, target));
 });

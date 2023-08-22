@@ -1,5 +1,5 @@
 import { createThemable } from 'react-native-theme-prototyper';
-import type { BorderRadius } from '../../helpers';
+import type { BorderRadius } from '../../../helpers';
 
 export type IconButtonThemeData = {
   size?: number;

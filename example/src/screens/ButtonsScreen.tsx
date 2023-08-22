@@ -10,13 +10,15 @@ import {
   TextButton,
   TextButtonTheme,
   TopAppBar,
+  useOutlineButtonTheme,
   useTextButtonTheme,
 } from '../components';
 
 const noop = () => {};
 
 export const ButtonsScreen = (props: { onPop: () => void }) => {
-  const theme = useTextButtonTheme();
+  const textButtonTheme = useTextButtonTheme();
+  const outlineButtonTheme = useOutlineButtonTheme();
 
   return (
     <Scaffold
@@ -31,7 +33,12 @@ export const ButtonsScreen = (props: { onPop: () => void }) => {
           <Text>Text button (default)</Text>
         </TextButton>
         <Spacer.Tiny />
-        <TextButtonTheme value={{ ...theme, color: '#7BD22E' }}>
+        <TextButtonTheme
+          value={{
+            ...textButtonTheme,
+            color: '#7BD22E',
+          }}
+        >
           <TextButton onPress={noop}>
             <Text>Text button (custom)</Text>
           </TextButton>
@@ -41,7 +48,12 @@ export const ButtonsScreen = (props: { onPop: () => void }) => {
           <Text>Outline button (Default)</Text>
         </OutlineButton>
         <Spacer.Medium />
-        <OutlineButtonTheme value={{ ...theme, color: '#D22E7B' }}>
+        <OutlineButtonTheme
+          value={{
+            ...outlineButtonTheme,
+            color: '#D22E7B',
+          }}
+        >
           <OutlineButton onPress={noop}>
             <Text>Outline button (custom)</Text>
           </OutlineButton>

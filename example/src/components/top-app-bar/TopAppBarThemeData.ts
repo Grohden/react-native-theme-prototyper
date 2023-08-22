@@ -1,10 +1,11 @@
-import type { TextThemeData } from '../text/TextThemeData';
+import type { TextThemeData } from '../text';
 import { createThemable } from 'react-native-theme-prototyper';
 
 export type TopAppBarThemeData = {
-  icons: { size: number; color: string };
-  border: { color: string; thickness: number };
-  titleStyle: TextThemeData;
+  headline: TextThemeData;
+  leadingIcon: { color: string; size: number };
+  trailingIcons: { color: string; size: number };
+  container: { color: string; colorOnScroll: string };
 };
 
 export const {
