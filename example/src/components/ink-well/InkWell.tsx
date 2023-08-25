@@ -55,8 +55,8 @@ export const InkWell = ({
         setRipples((values) =>
           values.map((value) => ({ ...value!, faded: true }))
         );
-        onPress?.();
       }}
+      onPress={onPress}
     >
       <Animated.View>
         {children}
