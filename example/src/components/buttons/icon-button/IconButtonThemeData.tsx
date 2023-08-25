@@ -3,7 +3,8 @@ import type { BorderRadius } from '../../../helpers';
 
 export type IconButtonThemeData = {
   size?: number;
-  color?: string;
+  containerSize?: number;
+  color: string;
   backgroundColor?: string;
   borderRadius?: BorderRadius;
 };

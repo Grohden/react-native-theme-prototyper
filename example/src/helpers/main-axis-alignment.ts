@@ -1,1 +1,7 @@
-export type MainAxisAlignment = 'start' | 'center' | 'end';
+export type MainAxisAlignment =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'spaceBetween'
+  | 'spaceAround'
+  | 'spaceEvenly';

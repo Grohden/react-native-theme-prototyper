@@ -1,7 +1,9 @@
-export type BorderSideArgs = { color?: string; width?: number };
+import type { Color } from '../../design-tokens';
+
+export type BorderSideArgs = { color?: Color; width?: number };
 
 export class BorderSide {
-  public color: string | undefined;
+  public color: Color | undefined;
   public width: number | undefined;
 
   private constructor(values: BorderSideArgs) {

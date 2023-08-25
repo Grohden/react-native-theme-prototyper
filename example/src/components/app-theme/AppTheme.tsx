@@ -45,8 +45,6 @@ export type AppTheme = {
 
 const RootTheme = createAppTheme<AppTheme>(null!);
 
-const baseFontSize = 12;
-
 const AppThemes: { light: AppTheme } = {
   light: {
     colors: lightColorTokens,
@@ -57,10 +55,12 @@ const AppThemes: { light: AppTheme } = {
       leadingIcon: {
         color: 'black',
         size: 24,
+        containerSize: 48,
       },
       trailingIcons: {
         color: 'black',
         size: 24,
+        containerSize: 48,
       },
       container: {
         color: lightColorTokens.surface,
@@ -87,7 +87,9 @@ const AppThemes: { light: AppTheme } = {
       },
     },
     iconButton: {
-      size: baseFontSize * 1.4,
+      color: lightColorTokens.primary,
+      containerSize: 48,
+      size: 24,
     },
   },
 };

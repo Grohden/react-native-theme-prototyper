@@ -5,6 +5,7 @@ const createSpacer = (size: number) => {
   const style = StyleSheet.create({
     container: {
       height: size,
+      width: size,
     },
   });
 

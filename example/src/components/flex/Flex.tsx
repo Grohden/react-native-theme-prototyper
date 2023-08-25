@@ -1,10 +1,25 @@
-import { View, ViewStyle } from 'react-native';
+import { FlexStyle, View, ViewStyle } from 'react-native';
 import type {
   CrossAxisAlignment,
   MainAxisAlignment,
   MainAxisSize,
 } from '../../helpers';
 import React, { PropsWithChildren } from 'react';
+
+const mainAxisToFlex: Record<MainAxisAlignment, FlexStyle['justifyContent']> = {
+  spaceAround: 'space-around',
+  spaceBetween: 'space-between',
+  spaceEvenly: 'space-evenly',
+  start: 'flex-start',
+  center: 'center',
+  end: 'flex-end',
+};
+
+const crossAxisToFlex: Record<CrossAxisAlignment, FlexStyle['alignItems']> = {
+  start: 'flex-start',
+  center: 'center',
+  end: 'flex-end',
+};
 
 export const Flex = ({
   direction,
@@ -26,29 +41,8 @@ export const Flex = ({
       break;
   }
 
-  switch (mainAxisAlignment) {
-    case 'start':
-      style.justifyContent = 'flex-start';
-      break;
-    case 'center':
-      style.justifyContent = 'center';
-      break;
-    case 'end':
-      style.justifyContent = 'flex-end';
-      break;
-  }
-
-  switch (crossAxisAlignment) {
-    case 'start':
-      style.alignItems = 'flex-start';
-      break;
-    case 'center':
-      style.alignItems = 'center';
-      break;
-    case 'end':
-      style.alignItems = 'flex-end';
-      break;
-  }
+  style.justifyContent = mainAxisToFlex[mainAxisAlignment];
+  style.alignItems = crossAxisToFlex[crossAxisAlignment];
 
   return <View style={style}>{children}</View>;
 };
