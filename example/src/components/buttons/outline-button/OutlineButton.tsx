@@ -2,9 +2,13 @@ import React, { ReactNode } from 'react';
 import chroma from 'chroma-js';
 import { TextTheme } from '../../text';
 import { useAppTheme } from '../../app-theme';
-import { Border, BorderRadius, EdgeInsets } from '../../../helpers';
-import { Padding } from '../../padding';
-import { DecoratedBox } from '../../decorated-box';
+import {
+  Border,
+  BorderRadius,
+  BoxDecoration,
+  EdgeInsets,
+} from '../../../helpers';
+import { Padding, DecoratedBox } from '../../containers';
 import { InkWell } from '../../ink-well';
 
 export const OutlineButton = ({
@@ -29,7 +33,10 @@ export const OutlineButton = ({
     .hex();
 
   return (
-    <DecoratedBox border={border} borderRadius={borderRadius} clipsChildren>
+    <DecoratedBox
+      boxDecoration={BoxDecoration.new({ border, borderRadius })}
+      clipsChildren
+    >
       <InkWell onPress={onPress} rippleColor={highlightColor} role="button">
         <Padding
           padding={EdgeInsets.symmetric({ vertical: 10, horizontal: 16 })}

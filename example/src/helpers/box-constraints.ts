@@ -1,12 +1,15 @@
 import type { Size } from './size';
+import type { ViewStyle } from 'react-native';
+
+const finiteOrExpanded = (v: number) => (isFinite(v) ? v : ('100%' as const));
 
 export class BoxConstraints {
-  static expand({ width, height }: { width?: number; height?: number }) {
+  static expand(size?: { width?: number; height?: number }) {
     return new BoxConstraints(
-      width ?? Infinity,
-      width ?? Infinity,
-      height ?? Infinity,
-      height ?? Infinity
+      size?.width ?? Infinity,
+      size?.width ?? Infinity,
+      size?.height ?? Infinity,
+      size?.height ?? Infinity
     );
   }
 
@@ -19,9 +22,29 @@ export class BoxConstraints {
   }
 
   constructor(
-    public readonly minWidth = 0,
-    public readonly maxWidth = Infinity,
-    public readonly minHeight = 0,
-    public readonly maxHeight = Infinity
+    private readonly minWidth = 0,
+    private readonly maxWidth = Infinity,
+    private readonly minHeight = 0,
+    private readonly maxHeight = Infinity
   ) {}
+
+  toStyle() {
+    const styles: ViewStyle = {};
+
+    if (this.minHeight === this.maxHeight) {
+      styles.height = finiteOrExpanded(this.maxHeight);
+    } else {
+      styles.minHeight = finiteOrExpanded(this.minHeight);
+      styles.maxHeight = finiteOrExpanded(this.maxHeight);
+    }
+
+    if (this.minWidth === this.maxWidth) {
+      styles.width = finiteOrExpanded(this.maxWidth);
+    } else {
+      styles.minWidth = finiteOrExpanded(this.minWidth);
+      styles.maxWidth = finiteOrExpanded(this.maxWidth);
+    }
+
+    return styles;
+  }
 }

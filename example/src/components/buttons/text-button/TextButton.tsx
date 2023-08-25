@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { useAppTheme } from '../../app-theme';
-import { BorderRadius, EdgeInsets } from '../../../helpers';
+import { BorderRadius, BoxDecoration, EdgeInsets } from '../../../helpers';
 import chroma from 'chroma-js';
-import { DecoratedBox } from '../../decorated-box';
-import { Padding } from '../../padding';
+import { DecoratedBox, Padding } from '../../containers';
 import { TextTheme } from '../../text';
 import { InkWell } from '../../ink-well';
+import { Row } from '../../flex';
 
 export const TextButton = ({
   children,
@@ -24,7 +24,10 @@ export const TextButton = ({
     .hex();
 
   return (
-    <DecoratedBox borderRadius={borderRadius} clipsChildren>
+    <DecoratedBox
+      boxDecoration={BoxDecoration.new({ borderRadius })}
+      clipsChildren
+    >
       <InkWell rippleColor={highlightColor} onPress={onPress} role="button">
         <Padding
           padding={EdgeInsets.symmetric({
@@ -32,7 +35,9 @@ export const TextButton = ({
             horizontal: 16,
           })}
         >
-          <TextTheme value={textStyle}>{children}</TextTheme>
+          <TextTheme value={textStyle}>
+            <Row>{children}</Row>
+          </TextTheme>
         </Padding>
       </InkWell>
     </DecoratedBox>

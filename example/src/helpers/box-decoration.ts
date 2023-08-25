@@ -5,7 +5,7 @@ import type { ViewStyle } from 'react-native';
 type BoxDecorationProps = {
   border?: Border;
   borderRadius?: BorderRadius;
-  color: Color;
+  color?: Color;
 };
 
 export class BoxDecoration {

@@ -4,7 +4,7 @@ import type { Color } from '../../../design-tokens';
 
 export type IconButtonThemeData = {
   size?: number;
-  containerSize?: number;
+  containerSize: number;
   color: Color;
   backgroundColor?: string;
   borderRadius?: BorderRadius;

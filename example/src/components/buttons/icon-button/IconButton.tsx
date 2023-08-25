@@ -1,12 +1,17 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React from 'react';
 import { useAppTheme } from '../../app-theme';
-import { Center } from '../../center';
+import { DecoratedBox, Container } from '../../containers';
 import { InkWell } from '../../ink-well';
-import { SizedBox } from '../../sized-box';
 import chroma from 'chroma-js';
-import { DecoratedBox } from '../../decorated-box';
-import { BorderRadius } from '../../../helpers';
+import {
+  AlignmentDirectional,
+  Border,
+  BorderRadius,
+  BoxConstraints,
+  BoxDecoration,
+  Size,
+} from '../../../helpers';
 
 type IconName = React.ComponentProps<typeof MaterialIcons>['name'];
 
@@ -30,20 +35,26 @@ export const IconButton = ({
     .hex();
 
   return (
-    <DecoratedBox borderRadius={BorderRadius.circular(100)} clipsChildren>
+    <DecoratedBox
+      boxDecoration={BoxDecoration.new({
+        borderRadius: BorderRadius.circular(100),
+        border: Border.debug(),
+      })}
+      clipsChildren
+    >
       <InkWell onPress={onPress} rippleColor={highlightColor}>
-        <SizedBox
-          width={iconButton.containerSize ?? containerSize}
-          height={iconButton.containerSize ?? containerSize}
+        <Container
+          align={AlignmentDirectional.center}
+          constraints={BoxConstraints.tight(
+            Size.square(containerSize ?? iconButton.containerSize)
+          )}
         >
-          <Center>
-            <MaterialIcons
-              name={name}
-              size={size ?? iconButton.size}
-              color={color || iconButton.color}
-            />
-          </Center>
-        </SizedBox>
+          <MaterialIcons
+            name={name}
+            size={size ?? iconButton.size}
+            color={color || iconButton.color}
+          />
+        </Container>
       </InkWell>
     </DecoratedBox>
   );

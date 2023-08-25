@@ -1,5 +1,5 @@
-import { DecoratedBox } from '../decorated-box';
-import { Border, BorderRadius } from '../../helpers';
+import { DecoratedBox } from '../containers';
+import { Border, BorderRadius, BoxDecoration } from '../../helpers';
 import React from 'react';
 import { useAppTheme } from '../app-theme';
 import type { Color } from '../../design-tokens';
@@ -36,9 +36,11 @@ export const Card = ({
   return (
     <DecoratedBox
       clipsChildren={clipsChildren}
-      borderRadius={BorderRadius.circular(12)}
-      border={border}
-      backgroundColor={color}
+      boxDecoration={BoxDecoration.new({
+        border,
+        color,
+        borderRadius: BorderRadius.circular(12),
+      })}
     >
       {children}
     </DecoratedBox>

@@ -27,13 +27,13 @@ export const ButtonsScreen = (props: { onPop: () => void }) => {
     <Scaffold
       topAppBar={
         <TopAppBar leadingAction={<BackButton onPress={props.onPop} />}>
-          <Text>Buttons</Text>
+          <Text>Button</Text>
         </TopAppBar>
       }
     >
       <Padding padding={EdgeInsets.all(12)}>
         <Column mainAxisSize="max" crossAxisAlignment="start">
-          <Text style={typeScale.titleLarge}>Text buttons</Text>
+          <Text style={typeScale.headlineSmall}>Text buttons</Text>
           <Row mainAxisSize="max" mainAxisAlignment="center">
             <TextButton onPress={noop}>
               <Text>Default</Text>
