@@ -7,6 +7,7 @@ export * from './center';
 export * from './column';
 export * from './decorated-box';
 export * from './flex';
+export * from './ink-well';
 export * from './padding';
 export * from './row';
 export * from './scaffold';

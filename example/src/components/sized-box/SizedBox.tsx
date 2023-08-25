@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 
 export const SizedBox = (
   props: PropsWithChildren<{
-    width?: string | number;
-    height?: string | number;
+    width?: ViewStyle['width'];
+    height?: ViewStyle['height'];
   }>
 ) => <View style={[styles.defaults, props]}>{props.children}</View>;
 

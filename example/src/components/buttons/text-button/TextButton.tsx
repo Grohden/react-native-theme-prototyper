@@ -1,10 +1,11 @@
 import React, { ReactNode } from 'react';
-import { TouchableHighlight } from 'react-native';
-import { TextTheme } from '../../text';
 import { useAppTheme } from '../../app-theme';
-import { Padding } from '../../padding';
 import { BorderRadius, EdgeInsets } from '../../../helpers';
 import chroma from 'chroma-js';
+import { DecoratedBox } from '../../decorated-box';
+import { Padding } from '../../padding';
+import { TextTheme } from '../../text';
+import { InkWell } from '../../ink-well';
 
 export const TextButton = ({
   children,
@@ -23,14 +24,17 @@ export const TextButton = ({
     .hex();
 
   return (
-    <TouchableHighlight
-      onPress={onPress}
-      underlayColor={underlayColor}
-      style={borderRadius.toStyle()}
-    >
-      <Padding padding={EdgeInsets.symmetric({ vertical: 12, horizontal: 16 })}>
-        <TextTheme value={textStyle}>{children}</TextTheme>
-      </Padding>
-    </TouchableHighlight>
+    <DecoratedBox borderRadius={borderRadius} clipsChildren>
+      <InkWell rippleColor={underlayColor} onPress={onPress}>
+        <Padding
+          padding={EdgeInsets.symmetric({
+            vertical: 12,
+            horizontal: 16,
+          })}
+        >
+          <TextTheme value={textStyle}>{children}</TextTheme>
+        </Padding>
+      </InkWell>
+    </DecoratedBox>
   );
 };

@@ -28,10 +28,11 @@ import {
   StateTokens,
   TypeScaleTokens,
   typeScaleTokens,
+  MotionTokens,
+  motionTokens,
 } from '../../design-tokens';
 
 export type AppTheme = {
-  roundness: number;
   topAppBar: TopAppBarThemeData;
   textButton: TextButtonThemeData;
   outlineButton: OutlineButtonThemeData;
@@ -39,16 +40,11 @@ export type AppTheme = {
   colors: ColorTokens;
   typeScale: TypeScaleTokens;
   states: StateTokens;
+  motion: MotionTokens;
 };
 
-const RootTheme = createAppTheme<{
-  colors: AppTheme['colors'];
-  typeScale: AppTheme['typeScale'];
-  states: AppTheme['states'];
-  roundness: number;
-}>(null!);
+const RootTheme = createAppTheme<AppTheme>(null!);
 
-const roundness = 38;
 const baseFontSize = 12;
 
 const AppThemes: { light: AppTheme } = {
@@ -56,7 +52,7 @@ const AppThemes: { light: AppTheme } = {
     colors: lightColorTokens,
     typeScale: typeScaleTokens,
     states: stateTokens,
-    roundness,
+    motion: motionTokens,
     topAppBar: {
       leadingIcon: {
         color: 'black',
@@ -116,7 +112,9 @@ export const AppTheme = (props: { children?: ReactNode | undefined }) => {
   );
 };
 
-export const useAppTheme = () => ({
+export const useAppTheme = (): AppTheme & {
+  insets: ReturnType<typeof useSafeAreaInsets>;
+} => ({
   ...RootTheme.useHook(),
   topAppBar: useTopAppBarTheme(),
   textButton: useTextButtonTheme(),
