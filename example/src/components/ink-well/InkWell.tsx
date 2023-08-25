@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Animated, Easing, Pressable } from 'react-native';
 import { InkRipple, InkRippleProps } from './_InkRipple';
-import { motionTokens } from '../../design-tokens';
+import { Color, motionTokens } from '../../design-tokens';
 
 // Should we do as flutter? the base for Ink stuff is Material
 export const InkWell = ({
@@ -12,7 +12,7 @@ export const InkWell = ({
   children,
 }: React.PropsWithChildren<{
   role?: 'button';
-  rippleColor: string;
+  rippleColor: Color;
   duration?: number;
   onPress?: () => void;
 }>) => {
@@ -32,6 +32,9 @@ export const InkWell = ({
       role={role}
       onPressIn={(event) => {
         const key = ++rippleIds.current;
+        // FIXME: in flutter (material?) the inkwell animation
+        //  is slower on hold, when released it accelerates
+        //  we're not doing the same here
         const ripple: InkRippleProps & { key: number } = {
           key: key,
           // same as kThemeChangeDuration in flutter

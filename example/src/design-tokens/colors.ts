@@ -1,12 +1,14 @@
+export type Color = string;
+
 export type ColorTokens = {
-  primary: string;
-  surface: string;
-  surfaceContainer: string;
-  surfaceContainerHighest: string;
-  onSurface: string;
-  outline: string;
-  background: string;
-  onBackground: string;
+  primary: Color;
+  surface: Color;
+  surfaceContainer: Color;
+  surfaceContainerHighest: Color;
+  onSurface: Color;
+  outline: Color;
+  background: Color;
+  onBackground: Color;
 };
 
 export const lightColorTokens = {

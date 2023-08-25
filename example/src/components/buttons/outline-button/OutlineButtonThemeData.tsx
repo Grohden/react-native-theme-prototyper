@@ -1,12 +1,13 @@
 import { createThemable } from 'react-native-theme-prototyper';
 import type { TextThemeData } from '../../text';
+import type { Color } from '../../../design-tokens';
 
 export type OutlineButtonThemeData = {
   shapeRadius: number;
-  color: string;
+  color: Color;
   container: {
     outlineWidth: number;
-    outlineColor: string;
+    outlineColor: Color;
   };
   labelText: Omit<TextThemeData, 'color'>;
 };

@@ -2,6 +2,7 @@ import { DecoratedBox } from '../decorated-box';
 import { Border, BorderRadius } from '../../helpers';
 import React from 'react';
 import { useAppTheme } from '../app-theme';
+import type { Color } from '../../design-tokens';
 
 export const Card = ({
   mode = 'outlined',
@@ -13,7 +14,7 @@ export const Card = ({
 }>) => {
   const { colors } = useAppTheme();
   let border: Border | undefined;
-  let color: string | undefined;
+  let color: Color | undefined;
 
   switch (mode) {
     case 'outlined':

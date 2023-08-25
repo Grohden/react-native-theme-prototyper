@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, EasingFunction, StyleSheet, View } from 'react-native';
+import type { Color } from '../../design-tokens';
 
 export type InkRippleProps = {
   faded: boolean;
   duration: number;
   easing: EasingFunction;
-  color: string;
+  color: Color;
   position: { x: number; y: number };
   onComplete: () => void;
 };
@@ -46,7 +47,7 @@ export const InkRipple = ({
       onLayout={(event) => {
         const { width, height } = event.nativeEvent.layout;
 
-        setRadius(Math.sqrt(width ** 2 + height ** 2));
+        setRadius(Math.sqrt(width * 2 + height * 2));
       }}
     >
       <Animated.View
