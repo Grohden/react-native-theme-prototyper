@@ -5,8 +5,12 @@ import { useAppTheme } from '../app-theme';
 
 export const Card = ({
   mode = 'outlined',
+  clipsChildren,
   children,
-}: React.PropsWithChildren<{ mode?: 'outlined' | 'filled' }>) => {
+}: React.PropsWithChildren<{
+  mode?: 'outlined' | 'filled';
+  clipsChildren?: boolean;
+}>) => {
   const { colors } = useAppTheme();
   let border: Border | undefined;
   let color: string | undefined;
@@ -30,6 +34,7 @@ export const Card = ({
 
   return (
     <DecoratedBox
+      clipsChildren={clipsChildren}
       borderRadius={BorderRadius.circular(12)}
       border={border}
       backgroundColor={color}

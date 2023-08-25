@@ -19,13 +19,13 @@ export const TextButton = ({
 
   const borderRadius = BorderRadius.circular(shapeRadius);
   const textStyle = { ...labelText, color };
-  const underlayColor = chroma(color)
+  const highlightColor = chroma(color)
     .alpha(states.pressed.stateLayerOpacity)
     .hex();
 
   return (
     <DecoratedBox borderRadius={borderRadius} clipsChildren>
-      <InkWell rippleColor={underlayColor} onPress={onPress}>
+      <InkWell rippleColor={highlightColor} onPress={onPress} role="button">
         <Padding
           padding={EdgeInsets.symmetric({
             vertical: 12,

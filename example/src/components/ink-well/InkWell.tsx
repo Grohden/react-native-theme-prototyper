@@ -5,14 +5,17 @@ import { motionTokens } from '../../design-tokens';
 
 // Should we do as flutter? the base for Ink stuff is Material
 export const InkWell = ({
+  role,
   rippleColor,
-  children,
+  duration,
   onPress,
+  children,
 }: React.PropsWithChildren<{
+  role?: 'button';
   rippleColor: string;
+  duration?: number;
   onPress?: () => void;
 }>) => {
-  // const { motion } = useAppTheme();
   const rippleIds = useRef(0);
   const [ripples, setRipples] = useState<(InkRippleProps & { key: number })[]>(
     []
@@ -26,12 +29,13 @@ export const InkWell = ({
 
   return (
     <Pressable
+      role={role}
       onPressIn={(event) => {
         const key = ++rippleIds.current;
         const ripple: InkRippleProps & { key: number } = {
           key: key,
-          // FIXME: review duration
-          duration: motionTokens.duration.long4,
+          // same as kThemeChangeDuration in flutter
+          duration: duration ?? motionTokens.duration.short2,
           easing: Easing.bezier(...motionTokens.easing.emphasized),
           color: rippleColor,
           faded: false,
