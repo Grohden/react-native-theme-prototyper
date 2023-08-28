@@ -13,10 +13,11 @@ export const Card = ({
   mode = 'outlined',
   clipsChildren,
   children,
-}: React.PropsWithChildren<{
+}: {
+  children: React.ReactChild;
   mode?: 'outlined' | 'filled' | 'elevated';
   clipsChildren?: boolean;
-}>) => {
+}) => {
   const { colors } = useAppTheme();
   let border: Border | undefined;
   let color: Color | undefined;
