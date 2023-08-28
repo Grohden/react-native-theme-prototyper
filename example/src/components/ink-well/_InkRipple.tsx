@@ -47,7 +47,7 @@ export const InkRipple = ({
       onLayout={(event) => {
         const { width, height } = event.nativeEvent.layout;
 
-        setRadius(Math.sqrt(width * 2 + height * 2));
+        setRadius(Math.sqrt(width ** 2 + height ** 2));
       }}
     >
       <Animated.View

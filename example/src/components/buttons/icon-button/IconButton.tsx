@@ -6,7 +6,6 @@ import { InkWell } from '../../ink-well';
 import chroma from 'chroma-js';
 import {
   AlignmentDirectional,
-  Border,
   BorderRadius,
   BoxConstraints,
   BoxDecoration,
@@ -38,7 +37,6 @@ export const IconButton = ({
     <DecoratedBox
       boxDecoration={BoxDecoration.new({
         borderRadius: BorderRadius.circular(100),
-        border: Border.debug(),
       })}
       clipsChildren
     >

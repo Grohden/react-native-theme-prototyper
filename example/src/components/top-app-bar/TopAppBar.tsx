@@ -12,7 +12,6 @@ import {
 } from '../containers';
 import {
   AlignmentDirectional,
-  Border,
   BoxConstraints,
   BoxDecoration,
   EdgeInsets,
@@ -43,9 +42,6 @@ export const TopAppBar = (props: {
     <DecoratedBox boxDecoration={BoxDecoration.new({ color: container.color })}>
       <Padding padding={EdgeInsets.only({ top: insets.top })}>
         <Container
-          boxDecoration={BoxDecoration.new({
-            border: Border.debug(),
-          })}
           constraints={BoxConstraints.tight(Size.fromHeight(64))}
           align={AlignmentDirectional.center}
         >
