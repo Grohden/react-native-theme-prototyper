@@ -2,19 +2,25 @@ import * as React from 'react';
 import {
   BackButton,
   Card,
-  Center,
   Column,
+  ConstrainedBox,
   Padding,
   Row,
   Scaffold,
   SizedBox,
-  Spacer,
   Text,
   TopAppBar,
+  useAppTheme,
 } from '../components';
-import { EdgeInsets } from '../helpers';
+import { BoxConstraints, EdgeInsets } from '../helpers';
 
 export const CardsScreen = (props: { onPop: () => void }) => {
+  const { typeScale } = useAppTheme();
+  const cardPadding = EdgeInsets.all(12);
+  const cardConstraints = BoxConstraints.expand({
+    height: 100,
+  });
+
   return (
     <Scaffold
       topAppBar={
@@ -23,30 +29,26 @@ export const CardsScreen = (props: { onPop: () => void }) => {
         </TopAppBar>
       }
     >
-      <Padding padding={EdgeInsets.symmetric({ vertical: 24 })}>
+      <Padding padding={EdgeInsets.all(12)}>
         <Column crossAxisAlignment="center" mainAxisSize="max">
           <Row mainAxisAlignment="center" mainAxisSize="max">
-            <Card mode="outlined">
-              <SizedBox height={100} width={100}>
-                <Center>
-                  <Padding padding={EdgeInsets.symmetric({ horizontal: 12 })}>
-                    <Text>Outlined</Text>
-                  </Padding>
-                </Center>
-              </SizedBox>
-            </Card>
+            <ConstrainedBox constraints={cardConstraints}>
+              <Card mode="outlined">
+                <Padding padding={cardPadding}>
+                  <Text style={typeScale.titleMedium}>Outlined</Text>
+                </Padding>
+              </Card>
+            </ConstrainedBox>
           </Row>
-          <Spacer.Tiny />
+          <SizedBox height={12} />
           <Row mainAxisAlignment="center" mainAxisSize="max">
-            <Card mode="filled" clipsChildren>
-              <SizedBox height={100} width={100}>
-                <Center>
-                  <Padding padding={EdgeInsets.symmetric({ horizontal: 12 })}>
-                    <Text>Filled</Text>
-                  </Padding>
-                </Center>
-              </SizedBox>
-            </Card>
+            <ConstrainedBox constraints={cardConstraints}>
+              <Card mode="filled" clipsChildren>
+                <Padding padding={cardPadding}>
+                  <Text style={typeScale.titleMedium}>Filled</Text>
+                </Padding>
+              </Card>
+            </ConstrainedBox>
           </Row>
         </Column>
       </Padding>

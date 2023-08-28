@@ -1,6 +1,11 @@
-import { DecoratedBox } from '../containers';
-import { Border, BorderRadius, BoxDecoration } from '../../helpers';
-import React from 'react';
+import { Container } from '../containers';
+import {
+  Border,
+  BorderRadius,
+  BoxConstraints,
+  BoxDecoration,
+} from '../../helpers';
+import React, { Children } from 'react';
 import { useAppTheme } from '../app-theme';
 import type { Color } from '../../design-tokens';
 
@@ -9,7 +14,7 @@ export const Card = ({
   clipsChildren,
   children,
 }: React.PropsWithChildren<{
-  mode?: 'outlined' | 'filled';
+  mode?: 'outlined' | 'filled' | 'elevated';
   clipsChildren?: boolean;
 }>) => {
   const { colors } = useAppTheme();
@@ -19,10 +24,6 @@ export const Card = ({
   switch (mode) {
     case 'outlined':
       color = colors.surface;
-      border = Border.all({
-        width: 1,
-        color: colors.outline,
-      });
       break;
     case 'filled':
       color = colors.surfaceContainerHighest;
@@ -34,15 +35,16 @@ export const Card = ({
   }
 
   return (
-    <DecoratedBox
+    <Container
       clipsChildren={clipsChildren}
+      constraints={BoxConstraints.expand()}
       boxDecoration={BoxDecoration.new({
         border,
         color,
         borderRadius: BorderRadius.circular(12),
       })}
     >
-      {children}
-    </DecoratedBox>
+      {Children.only(children)}
+    </Container>
   );
 };

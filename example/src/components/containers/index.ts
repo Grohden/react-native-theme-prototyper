@@ -2,6 +2,7 @@
 
 export * from './Align';
 export * from './Center';
+export * from './ConstrainedBox';
 export * from './Container';
 export * from './DecoratedBox';
 export * from './Expanded';

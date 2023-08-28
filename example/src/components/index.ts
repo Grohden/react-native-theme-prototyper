@@ -8,6 +8,5 @@ export * from './flex';
 export * from './ink-well';
 export * from './scaffold';
 export * from './sized-box';
-export * from './spacer';
 export * from './text';
 export * from './top-app-bar';

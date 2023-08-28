@@ -1,10 +1,7 @@
-import { View } from 'react-native';
 import React from 'react';
 import type { EdgeInsets } from '../../helpers';
+import { Container } from './Container';
 
-export const Padding = ({
-  padding,
-  children,
-}: React.PropsWithChildren<{ padding: EdgeInsets }>) => (
-  <View style={padding.toPrefixed('padding')}>{children}</View>
-);
+export const Padding = (
+  props: React.PropsWithChildren<{ padding: EdgeInsets }>
+) => <Container {...props} />;

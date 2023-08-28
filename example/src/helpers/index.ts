@@ -4,6 +4,7 @@ export * from './alignment-geometry';
 export * from './border';
 export * from './box-constraints';
 export * from './box-decoration';
+export * from './box-shadow';
 export * from './cross-axis-alignment';
 export * from './edge-insets';
 export * from './main-axis-alignment';

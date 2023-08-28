@@ -9,7 +9,7 @@ import {
   Padding,
   Row,
   Scaffold,
-  Spacer,
+  SizedBox,
   Text,
   TextButton,
   TextButtonTheme,
@@ -38,30 +38,30 @@ export const ButtonsScreen = (props: { onPop: () => void }) => {
             <TextButton onPress={noop}>
               <Text>Default</Text>
             </TextButton>
-            <Spacer.Tiny />
+            <SizedBox width={8} />
             <TextButtonTheme value={{ ...textButton, color: '#7BD22E' }}>
               <TextButton onPress={noop}>
                 <Text>Custom</Text>
               </TextButton>
             </TextButtonTheme>
           </Row>
-          <Spacer.Medium />
+          <SizedBox height={12} />
           <Text style={typeScale.titleLarge}>Outline Buttons</Text>
-          <Spacer.Medium />
+          <SizedBox height={12} />
           <Row mainAxisSize="max" mainAxisAlignment="center">
             <OutlineButton onPress={noop}>
               <Text>Default</Text>
             </OutlineButton>
-            <Spacer.Tiny />
+            <SizedBox width={8} />
             <OutlineButtonTheme value={{ ...outlineButton, color: '#D22E7B' }}>
               <OutlineButton onPress={noop}>
                 <Text>Custom</Text>
               </OutlineButton>
             </OutlineButtonTheme>
           </Row>
-          <Spacer.Medium />
+          <SizedBox height={12} />
           <Text style={typeScale.titleLarge}>Outline Buttons</Text>
-          <Spacer.Medium />
+          <SizedBox height={12} />
           <Row mainAxisSize="max" mainAxisAlignment="center">
             <IconButtonTheme value={{ ...iconButton, size: 28 }}>
               <IconButton name="arrow-back" onPress={noop} />
